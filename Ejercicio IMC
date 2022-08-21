@@ -9,13 +9,14 @@ import android.widget.*;
 
 
 public class MainActivity extends AppCompatActivity {
-
+//Declaro Variables
     private TextView imc, mensaje;
     private EditText estatura, peso;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    // Asigno variables a los campos en gráficos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         peso = (EditText) findViewById(R.id.etPeso);
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view){
+   // Extraigo información ingresada en gráficos a variables tipo cadena para despues convertirlas a tipo numéricas y realizar la operación
         String valor1=peso.getText().toString();
         String valor2=estatura.getText().toString();
         double peso1 = Double.parseDouble(valor1);
