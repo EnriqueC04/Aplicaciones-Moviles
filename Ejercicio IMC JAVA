@@ -1,56 +1,56 @@
-package com.example.gasto;
-
-import android.os.Bundle;
+package com.example.ejercicioimc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-
 public class MainActivity extends AppCompatActivity {
-//Declaro Variables
-    private TextView imc, mensaje;
-    private EditText estatura, peso;
+
+    //Declaro Variables
+        private TextView imc, mensaje;
+        private EditText estatura, peso;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    // Asigno variables a los campos en gráficos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        peso = (EditText) findViewById(R.id.etPeso);
-        estatura = (EditText) findViewById(R.id.etEstatura);
-        imc = (TextView) findViewById(R.id.tvIMC);
-        mensaje = (TextView) findViewById(R.id.tvMensaje);
 
+        // Asigno variables a los campos en gráficos
+            peso = (EditText) findViewById(R.id.etPeso);
+            estatura = (EditText) findViewById(R.id.etEstatura);
+            imc = (TextView) findViewById(R.id.tvIMC);
+            mensaje = (TextView) findViewById(R.id.tvMensaje);
+
+        }
+
+        public void calcular(View view){
+            // Extraigo información ingresada en gráficos a variables tipo cadena para despues convertirlas a tipo numéricas y realizar la operación
+            String valor1=peso.getText().toString();
+            String valor2=estatura.getText().toString();
+            double peso1 = Double.parseDouble(valor1);
+            double estatura1 = Double.parseDouble(valor2);
+            double operacion = peso1/(estatura1 * estatura1);
+            String calculo = String.valueOf(operacion);
+            imc.setText(calculo);
+
+            if (operacion < 18.5){
+                mensaje.setText("Estado de desnutrición");
+            }
+            if ((operacion >= 18.5) && (operacion<25)) {
+                mensaje.setText("Bajo Peso");
+            }
+            if ((operacion >= 25) && (operacion<30)){
+                mensaje.setText("Peso Normal");
+            }
+            if ((operacion >= 30) && (operacion<40)){
+                mensaje.setText("Con problemas de Obesidad");
+            }
+            if (operacion >= 40){
+                mensaje.setText("Obesidad Severa");
+            }
+
+        }
     }
-
-    public void calcular(View view){
-   // Extraigo información ingresada en gráficos a variables tipo cadena para despues convertirlas a tipo numéricas y realizar la operación
-        String valor1=peso.getText().toString();
-        String valor2=estatura.getText().toString();
-        double peso1 = Double.parseDouble(valor1);
-        double estatura1 = Double.parseDouble(valor2);
-        double operacion = peso1/(estatura1 * estatura1);
-        String calculo = String.valueOf(operacion);
-        imc.setText(calculo);
-
-        if (operacion < 18.5){
-            mensaje.setText("Estado de desnutrición");
-        }
-        if ((operacion >= 18.5) && (operacion<25)) {
-            mensaje.setText("Bajo Peso");
-        }
-        if ((operacion >= 25) && (operacion<30)){
-            mensaje.setText("Peso Normal");
-        }
-        if ((operacion >= 30) && (operacion<40)){
-            mensaje.setText("Con problemas de Obesidad");
-        }
-        if (operacion >= 40){
-            mensaje.setText("Obesidad Severa");
-        }
-
-    }
-}
